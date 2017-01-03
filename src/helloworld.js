@@ -7,3 +7,5 @@ const echo = message => console.log(message)
 echo("Angular 2 FTW")
 
 const arr = [1, 5, 6, 8];
+
+console.log("Add new branch")
