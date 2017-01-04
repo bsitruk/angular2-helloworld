@@ -1,21 +1,49 @@
 {
-    // Use IntelliSense to learn about possible Node.js debug attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Use IntelliSense to find out which attributes exist for node debugging
+    // Use hover for the description of the existing attributes
+    // For further information visit https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
-        {
-            "type": "node",
+    "configurations": [{
+            "name": "Server",
+            "type": "node2",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceRoot}/src/helloworld.js",
-            "cwd": "${workspaceRoot}"
+            "program": "${workspaceRoot}/src/server.js",
+            "cwd": "${workspaceRoot}",
+            "skipFiles": [
+                "node_modules/**/*.js"
+            ]
         },
         {
-            "type": "node",
-            "request": "attach",
+            "name": "Launch via NPM",
+            "type": "node2",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run", "debug"
+            ],
+            "port": 9229
+        },
+        {
             "name": "Attach to Process",
-            "port": 5858
+            "type": "node2",
+            "request": "attach",
+            "port": 9229,
+            "restart": true
+        },
+        {
+            "name": "Client",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceRoot}/src/public",
+            "userDataDir": "${workspaceRoot}/.vscode/chrome"
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Server/Client",
+            "configurations": ["Server", "Client"]
         }
     ]
 }
