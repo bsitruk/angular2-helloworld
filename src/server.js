@@ -17,7 +17,8 @@ function* root() {
 }
 
 function* test() {
-    var person = createPerson();
+    var firstname = "John";
+    var person = createPerson(firstname);
 
     this.type = 'json'
     this.body = person
@@ -29,9 +30,9 @@ app.listen(port, function () {
     console.log(`Server listening on port ${port}`)
 })
 
-function createPerson() {
+function createPerson(firstname) {
     var person = {
-        firstname: "John",
+        firstname,
         lastname: "Doe"
     }
     return person
